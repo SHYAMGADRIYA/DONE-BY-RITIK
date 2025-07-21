@@ -1,27 +1,68 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Happy Rakshabandhan</title>
+  <meta charset="UTF-8">
+  <title>System Breach</title>
   <style>
     body {
-      background-color: #ffe6f0;
-      color: #cc0066;
+      background-color: black;
+      color: #00ff00;
+      font-family: 'Courier New', monospace;
       text-align: center;
-      padding-top: 100px;
-      font-family: sans-serif;
+      padding-top: 15%;
     }
     h1 {
-      font-size: 3em;
+      font-size: 36px;
+      color: red;
+      animation: blink 1s infinite;
     }
-    .emoji {
-      font-size: 2em;
+    #typed {
+      font-size: 24px;
+      white-space: pre-wrap;
       margin-top: 20px;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
     }
   </style>
 </head>
 <body>
-  <h1>🎉 Happy Rakshabandhan!</h1>
-  <p class="emoji">You have been <b>back</b> by Shyam 🤣🤣</p>
-  <p>🎁 Surprise mil gaya? 😜</p>
+  <h1>⚠️ SYSTEM BREACH DETECTED ⚠️</h1>
+  <div id="typed"></div>
+
+  <!-- Hacker Sound -->
+  <audio autoplay loop>
+    <source src="https://files.catbox.moe/y7zihd.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    const message = `
+Your All Social Media Accounts Have Been HACKED
+
+🛑 Accessing Personal Data...
+🟡 Extracting Instagram Password...
+🔴 Device Location: Locked
+
+💀 YOU HAVE BEEN TARGETED 💀
+
+— By Dr. Vet 😎
+🎉 Happy Rakshabandhan 🎉
+    `;
+
+    let i = 0;
+    const speed = 50;
+
+    function typeWriter() {
+      if (i < message.length) {
+        document.getElementById("typed").innerHTML += message.charAt(i);
+        i++;
+        setTimeout(typeWriter, speed);
+      }
+    }
+
+    typeWriter();
+  </script>
 </body>
 </html>
