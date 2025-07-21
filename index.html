@@ -1,80 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>⚠ System Breached - Dr. Vet</title>
+  <meta charset="UTF-8" />
+  <title>Hacked by Ritik</title>
   <style>
     body {
       margin: 0;
-      background: black;
-      font-family: 'Courier New', Courier, monospace;
+      background-color: black;
       color: #00ff00;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 22px;
       overflow: hidden;
     }
 
-    .red-alert {
+    .terminal {
+      padding: 20px;
+      white-space: pre-line;
+    }
+
+    .red-flash {
       position: fixed;
       top: 0;
+      left: 0;
       width: 100%;
-      height: 5px;
+      height: 100%;
       background-color: red;
-      animation: blink 0.5s infinite alternate;
-      z-index: 1000;
+      opacity: 0.2;
+      animation: flash 1s infinite;
+      z-index: -1;
     }
 
-    @keyframes blink {
-      from { opacity: 0.2; }
-      to { opacity: 1; }
+    @keyframes flash {
+      0%, 100% { opacity: 0.1; }
+      50% { opacity: 0.3; }
     }
 
-    #terminal {
-      padding: 20px;
-      white-space: pre-wrap;
-      font-size: 14px;
-      line-height: 1.5;
-      height: 80vh;
-      overflow-y: scroll;
-      text-shadow: 0 0 5px #00ff00;
-    }
-
-    #countdown {
-      font-size: 20px;
+    #finalMessage {
       color: red;
-      text-align: center;
-      margin-top: 10px;
+      font-size: 32px;
       font-weight: bold;
-    }
-
-    #decrypt-btn {
-      display: block;
-      margin: 20px auto;
-      padding: 10px 20px;
-      background: #ff0000;
-      color: white;
-      font-size: 18px;
-      border: none;
-      cursor: pointer;
-      border-radius: 5px;
-      animation: blink 1s infinite;
-    }
-
-    #decrypt-btn:hover {
-      background: #aa0000;
-    }
-
-    audio {
       display: none;
+      text-align: center;
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
-
-  <div class="red-alert"></div>
-
-  <div id="terminal"></div>
-
-  <div id="countdown">Decrypting in: 00:30</div>
-  <button id="decrypt-btn" onclick="alert('Access Denied: Decryption key invalid!')">🔓 Decrypt Now</button>
+  <div class="red-flash"></div>
+  <div class="terminal" id="terminal"></div>
+  <div id="finalMessage">⚠️ Akarti, You Are HACKED By RITIK ⚠️</div>
 
   <audio autoplay loop>
     <source src="https://assets.mixkit.co/sfx/preview/mixkit-sci-fi-mystery-alert-3055.mp3" type="audio/mpeg">
@@ -82,57 +56,44 @@
 
   <script>
     const lines = [
-      ">>> Initiating HackTool v9.3 Ritikkk...",
-      ">>> Scanning target...",
-      ">>> IP Address Located: 192.168.0.107",
-      ">>> Firewall bypassed ✅",
-      ">>> Deploying malware...",
-      ">>> Encrypting user files...",
-      "[████░░░░░░░░░░] 25%",
-      "[████████░░░░░░] 60%",
-      "[██████████████] 100%",
-      ">>> Instagram - BREACHED",
-      ">>> WhatsApp - BREACHED",
-      ">>> Facebook - BREACHED",
-      ">>> Accessing webcam... FACE MATCHED 😈",
-      ">>> Uploading files to secure server...",
-      ">>> Locking system...",
-      ">>> ALERT! Security Protocols Disabled",
-      ">>> ALL DATA UNDER CONTROL!"
+      "Connecting to device 192.168.1.48...",
+      "Connected successfully.",
+      "Accessing Akarti's personal data...",
+      "Bypassing security...",
+      "Injecting virus...",
+      "Extracting WhatsApp chats...",
+      "Cloning gallery...",
+      "Uploading to dark web...",
+      "Encrypting files...",
+      "Activating front camera...",
+      "Tracking location: Found!",
+      "Finalizing attack...",
+      "💣 SYSTEM BREACH COMPLETE 💣",
     ];
 
-    const terminal = document.getElementById("terminal");
-    let i = 0;
+    let terminal = document.getElementById("terminal");
+    let finalMsg = document.getElementById("finalMessage");
+    let lineIndex = 0;
+    let charIndex = 0;
 
-    function typeLine() {
-      if (i < lines.length) {
-        terminal.innerHTML += lines[i] + "\n";
-        terminal.scrollTop = terminal.scrollHeight;
-        i++;
-        setTimeout(typeLine, 80); // Typing speed (ms)
+    function typeCharacter() {
+      if (lineIndex < lines.length) {
+        if (charIndex < lines[lineIndex].length) {
+          terminal.innerHTML += lines[lineIndex][charIndex];
+          charIndex++;
+          setTimeout(typeCharacter, 30); // FAST character speed
+        } else {
+          terminal.innerHTML += "\n";
+          lineIndex++;
+          charIndex = 0;
+          setTimeout(typeCharacter, 100); // Small delay between lines
+        }
       } else {
-        terminal.innerHTML += "[root@DrVet]$ _";
+        finalMsg.style.display = "block";
       }
     }
 
-    typeLine();
-
-    // Countdown Timer
-    let seconds = 30;
-    const countdown = document.getElementById("countdown");
-    const countdownInterval = setInterval(() => {
-      seconds--;
-      let display = seconds < 10 ? `00:0${seconds}` : `00:${seconds}`;
-      countdown.textContent = `Decrypting in: ${display}`;
-      if (seconds <= 0) {
-        clearInterval(countdownInterval);
-        countdown.textContent = "🔒 Decryption Failed. System Permanently Locked!";
-        document.getElementById("decrypt-btn").disabled = true;
-        document.getElementById("decrypt-btn").innerText = "❌ Locked";
-        document.getElementById("decrypt-btn").style.background = "gray";
-      }
-    }, 1000);
+    typeCharacter();
   </script>
-
 </body>
 </html>
