@@ -1,1 +1,1 @@
-happy Rakshabandhan
+bye bye Cuties 
