@@ -2,55 +2,34 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>System Breached</title>
+  <title>System Hacked - Dr. Vet</title>
   <style>
     body {
+      background: black;
+      color: #00ff00;
+      font-family: 'Courier New', Courier, monospace;
       margin: 0;
       padding: 0;
-      background: black url('https://media.giphy.com/media/l0MYB8Ory7Hqefo9a/giphy.gif') center center / cover no-repeat;
-      font-family: 'Courier New', Courier, monospace;
-      color: #00ff00;
-      text-shadow: 0 0 10px #00ff00;
       overflow: hidden;
     }
 
-    .container {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      animation: flicker 1.5s infinite alternate;
+    .terminal {
+      padding: 20px;
+      white-space: pre-wrap;
+      animation: type 120s steps(5000, end);
+      font-size: 14px;
+      line-height: 1.4;
+      height: 100vh;
+      overflow-y: hidden;
     }
 
-    h1 {
-      font-size: 60px;
-      margin: 0;
-      letter-spacing: 3px;
+    @keyframes type {
+      from { width: 0 }
+      to { width: 100% }
     }
 
-    p {
-      font-size: 20px;
-      margin-top: 20px;
-    }
-
-    @keyframes flicker {
-      0% { opacity: 1; }
-      50% { opacity: 0.7; }
-      100% { opacity: 1; }
-    }
-
-    .glitch {
-      animation: glitch 1s infinite;
-    }
-
-    @keyframes glitch {
-      0% { transform: translate(0); }
-      20% { transform: translate(-5px, 5px); }
-      40% { transform: translate(5px, -5px); }
-      60% { transform: translate(-5px, -5px); }
-      80% { transform: translate(5px, 5px); }
-      100% { transform: translate(0); }
+    .glow {
+      text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00;
     }
 
     audio {
@@ -60,16 +39,51 @@
 </head>
 <body>
 
-  <div class="container">
-    <h1 class="glitch">⚠ SYSTEM BREACHED ⚠</h1>
-    <p>All files encrypted... Access denied...</p>
-    <p>Hacked by <strong>Ritik Kayastha</strong> | Tracing your IP...</p>
+  <div class="terminal glow" id="terminal">
+    Initializing Dr. Vet HackTool v7.5...
+    Connecting to victim's IP...
+    IP located: 192.168.0.107
+    Bypassing firewall... SUCCESS
+    Injecting malware payload...
+    [▓▓░░░░░░░░] 23%
+    [▓▓▓▓▓▓░░░░] 57%
+    [▓▓▓▓▓▓▓▓▓▓] 100%
+    Payload active.
+    Accessing social media...
+    📱 Instagram... BREACHED
+    📘 Facebook... BREACHED
+    💬 WhatsApp... LOGGED IN
+    🧠 Brain Scan Active...
+
+    Sending data to secure server...
+    Encrypting all files...
+    System lock engaged.
+    🔒 Access Denied to original user.
+    
+    Tracking webcam...
+    FACE FOUND: Matching...
+    Name: Kavita Gadiya 😈
+
+    You have been hacked by Dr. Vet
+    Do not try to shut down this device.
+    All activity is being monitored.
+    █████████████████████████████████████████████████
+
+    [root@localhost]$ _ 
   </div>
 
-  <!-- Scary Hacker Sound -->
+  <!-- Background hacker sound -->
   <audio autoplay loop>
     <source src="https://assets.mixkit.co/sfx/preview/mixkit-sci-fi-mystery-alert-3055.mp3" type="audio/mpeg">
   </audio>
+
+  <script>
+    // Auto scroll like terminal output
+    const terminal = document.getElementById("terminal");
+    setInterval(() => {
+      terminal.scrollTop = terminal.scrollHeight;
+    }, 100);
+  </script>
 
 </body>
 </html>
