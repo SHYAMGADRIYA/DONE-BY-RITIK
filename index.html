@@ -2,34 +2,64 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>System Hacked - Dr. Vet</title>
+  <title>⚠ System Breached - Dr. Vet</title>
   <style>
     body {
-      background: black;
-      color: #00ff00;
-      font-family: 'Courier New', Courier, monospace;
       margin: 0;
-      padding: 0;
+      background: black;
+      font-family: 'Courier New', Courier, monospace;
+      color: #00ff00;
       overflow: hidden;
     }
 
-    .terminal {
+    .red-alert {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: 5px;
+      background-color: red;
+      animation: blink 0.5s infinite alternate;
+      z-index: 1000;
+    }
+
+    @keyframes blink {
+      from { opacity: 0.2; }
+      to { opacity: 1; }
+    }
+
+    #terminal {
       padding: 20px;
       white-space: pre-wrap;
-      animation: type 120s steps(5000, end);
       font-size: 14px;
-      line-height: 1.4;
-      height: 100vh;
-      overflow-y: hidden;
+      line-height: 1.5;
+      height: 80vh;
+      overflow-y: scroll;
+      text-shadow: 0 0 5px #00ff00;
     }
 
-    @keyframes type {
-      from { width: 0 }
-      to { width: 100% }
+    #countdown {
+      font-size: 20px;
+      color: red;
+      text-align: center;
+      margin-top: 10px;
+      font-weight: bold;
     }
 
-    .glow {
-      text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00;
+    #decrypt-btn {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      background: #ff0000;
+      color: white;
+      font-size: 18px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      animation: blink 1s infinite;
+    }
+
+    #decrypt-btn:hover {
+      background: #aa0000;
     }
 
     audio {
@@ -39,50 +69,69 @@
 </head>
 <body>
 
-  <div class="terminal glow" id="terminal">
-    Initializing Dr. Vet HackTool v7.5...
-    Connecting to victim's IP...
-    IP located: 192.168.0.107
-    Bypassing firewall... SUCCESS
-    Injecting malware payload...
-    [▓▓░░░░░░░░] 23%
-    [▓▓▓▓▓▓░░░░] 57%
-    [▓▓▓▓▓▓▓▓▓▓] 100%
-    Payload active.
-    Accessing social media...
-    📱 Instagram... BREACHED
-    📘 Facebook... BREACHED
-    💬 WhatsApp... LOGGED IN
-    🧠 Brain Scan Active...
+  <div class="red-alert"></div>
 
-    Sending data to secure server...
-    Encrypting all files...
-    System lock engaged.
-    🔒 Access Denied to original user.
-    
-    Tracking webcam...
-    FACE FOUND: Matching...
-    Name: Akarti  😈
+  <div id="terminal"></div>
 
-    You have been hacked By Ritik
-    Do not try to shut down this device.
-    All activity is being monitored.
-    █████████████████████████████████████████████████
+  <div id="countdown">Decrypting in: 00:30</div>
+  <button id="decrypt-btn" onclick="alert('Access Denied: Decryption key invalid!')">🔓 Decrypt Now</button>
 
-    [root@localhost]$ _ 
-  </div>
-
-  <!-- Background hacker sound -->
   <audio autoplay loop>
     <source src="https://assets.mixkit.co/sfx/preview/mixkit-sci-fi-mystery-alert-3055.mp3" type="audio/mpeg">
   </audio>
 
   <script>
-    // Auto scroll like terminal output
+    const lines = [
+      ">>> Initiating HackTool v9.3 Ritikkk...",
+      ">>> Scanning target...",
+      ">>> IP Address Located: 192.168.0.107",
+      ">>> Firewall bypassed ✅",
+      ">>> Deploying malware...",
+      ">>> Encrypting user files...",
+      "[████░░░░░░░░░░] 25%",
+      "[████████░░░░░░] 60%",
+      "[██████████████] 100%",
+      ">>> Instagram - BREACHED",
+      ">>> WhatsApp - BREACHED",
+      ">>> Facebook - BREACHED",
+      ">>> Accessing webcam... FACE MATCHED 😈",
+      ">>> Uploading files to secure server...",
+      ">>> Locking system...",
+      ">>> ALERT! Security Protocols Disabled",
+      ">>> ALL DATA UNDER CONTROL!"
+    ];
+
     const terminal = document.getElementById("terminal");
-    setInterval(() => {
-      terminal.scrollTop = terminal.scrollHeight;
-    }, 100);
+    let i = 0;
+
+    function typeLine() {
+      if (i < lines.length) {
+        terminal.innerHTML += lines[i] + "\n";
+        terminal.scrollTop = terminal.scrollHeight;
+        i++;
+        setTimeout(typeLine, 80); // Typing speed (ms)
+      } else {
+        terminal.innerHTML += "[root@DrVet]$ _";
+      }
+    }
+
+    typeLine();
+
+    // Countdown Timer
+    let seconds = 30;
+    const countdown = document.getElementById("countdown");
+    const countdownInterval = setInterval(() => {
+      seconds--;
+      let display = seconds < 10 ? `00:0${seconds}` : `00:${seconds}`;
+      countdown.textContent = `Decrypting in: ${display}`;
+      if (seconds <= 0) {
+        clearInterval(countdownInterval);
+        countdown.textContent = "🔒 Decryption Failed. System Permanently Locked!";
+        document.getElementById("decrypt-btn").disabled = true;
+        document.getElementById("decrypt-btn").innerText = "❌ Locked";
+        document.getElementById("decrypt-btn").style.background = "gray";
+      }
+    }, 1000);
   </script>
 
 </body>
